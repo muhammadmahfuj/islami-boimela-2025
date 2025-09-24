@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Islamic Book Fair 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              custom: ["MyCustomFont", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-image: url("assets/bg_small.png");
+        background-repeat: repeat;
+        background-size: auto;
+      }
+
+      .banner-bg {
+        background-image: url("/assets/banner_small.png");
+        background-repeat: repeat;
+        background-size: auto;
+      }
+      @font-face {
+        font-family: "MyCustomFont";
+        src: url("./assets/QayyumBookMA.woff2") format("woff2"),
+          url("./assets/QayyumBookMA.woff2") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* Small screen styles */
+      #frameWrapper {
+        width: 20rem;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      /* Medium screen styles */
+      @media (min-width: 768px) {
+        #frameWrapper {
+          width: 616px;
+          height: auto;
+        }
+      }
+
+      /* Name input responsive sizes */
+      #nameInput {
+        font-size: 20px;
+        color: #fff6ee;
+      }
+
+      @media (min-width: 768px) {
+        #nameInput {
+          font-size: 35px;
+        }
+      }
+
+      /* Updated image container styles */
+      #imageContainer {
+        position: absolute;
+        width: 29.7%;
+        height: 29.7%;
+        border-radius: 50%;
+        overflow: hidden;
+        left: 35%;
+        top: 34.3%;
+        background: #f3f4f6;
+      }
+
+      /* Updated uploaded image styles */
+      #uploadedImage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.1);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #templateImage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 min-h-screen flex flex-col bg-repeat font-custom">
+    <h1
+      class="text-2xl md:text-3xl text-white py-4 text-center font-custom banner-bg"
+    >
+      <a href="/index.html">ইসলামি বইমেলা-২০২৫</a>
+    </h1>
+    <div class="flex-1 flex flex-col items-center justify-center">
+      <div class="mt-8 flex flex-col items-center w-full px-4">
+        <div id="frameWrapper" class="relative aspect-square">
+          <img
+            id="backgroundImage"
+            src="./assets/Islamic-bookfair-dark.png"
+            class="absolute inset-0 w-full h-full rounded-xl object-contain z-0"
+          />
+
+          <div id="imageContainer" class="z-10">
+            <div
+              id="imagePlaceholder"
+              class="absolute inset-0 flex items-center text-center justify-center text-gray-500 mx-0 md:text-base"
+            >
+              ছবি
+            </div>
+            <img id="uploadedImage" class="hidden" />
+          </div>
+
+          <div
+            id="bottomImageContainer"
+            class="absolute w-[25%] h-auto z-20"
+            style="left: 37%; top: 323px"
+          >
+            <img
+              id="bottomImage"
+              src="./assets/img-2-dark.png"
+              class="w-full h-auto object-contain absolute -top-[130px] md:top-[40px]"
+            />
+          </div>
+
+          <input
+            type="text"
+            id="nameInput"
+            placeholder="Your name"
+            class="absolute w-[40%] text-center text-xl font-custom bg-transparent border-none outline-none z-30 animate-pulse"
+            style="left: 30%; top: 68%"
+          />
+        </div>
+
+        <div class="flex gap-4 mt-6">
+          <label
+            class="bg-[#B69E72] text-white text-md px-8 py-2 md:px-8 md:text-2xl rounded cursor-pointer hover:bg-[#BF8F56] text-center font-medium"
+          >
+            আপলোড করুন
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              class="overflow-hidden hidden"
+            />
+          </label>
+          <button
+            id="downloadBtn"
+            class="bg-[#00D19F] text-white text-md px-8 py-2 md:px-8 md:text-2xl rounded hover:bg-[#08BF8F]"
+          >
+            ডাউনলোড করুন
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="w-full text-center text-sm md:text-xl font-light py-4 pb-28 mt-auto text-gray-400"
+      >
+        developed by
+        <a
+          class="text-[#B69E72]"
+          href="https://www.facebook.com/ferdousmikdad/"
+          target="_blank"
+          >Muhammad Mahfuj</a
+        >
+      </div>
+    </div>
+
+    <!-- Download template  -->
+    <div id="downloadTemplate" class="fixed left-[-9999px] top-[-9999px]">
+      <div
+        class="relative"
+        style="width: 1000px; height: 1000px; background: white"
+      >
+        <img
+          id="templateBackground"
+          class="absolute inset-0 w-full h-full object-contain"
+          crossorigin="anonymous"
+        />
+        <div
+          class="absolute rounded-full overflow-hidden"
+          style="width: 297px; height: 297px; left: 350px; top: 343px"
+        >
+          <img
+            id="templateImage"
+            class=""
+            style="transform: translate(-50%, -50%) scale(1)"
+          />
+        </div>
+        <img
+          id="templateBottomImage"
+          class="absolute"
+          style="width: 250px; height: auto; left: 375px; top: 600px"
+          crossorigin="anonymous"
+        />
+        <div
+          id="templateName"
+          class="absolute text-center font-custom"
+          style="
+            width: 400px;
+            left: 300px;
+            top: 660px;
+            color: #fff6ee;
+            font-size: 50px;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      const imageInput = document.getElementById("imageInput");
+      const uploadedImage = document.getElementById("uploadedImage");
+      const imagePlaceholder = document.getElementById("imagePlaceholder");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const nameInput = document.getElementById("nameInput");
+      const backgroundImage = document.getElementById("backgroundImage");
+      const bottomImage = document.getElementById("bottomImage");
+      const downloadTemplate = document.getElementById("downloadTemplate");
+
+      imageInput.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            uploadedImage.src = e.target.result;
+            uploadedImage.classList.remove("hidden");
+            imagePlaceholder.classList.add("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      downloadBtn.addEventListener("click", async function () {
+        if (uploadedImage.classList.contains("hidden")) {
+          alert("Please upload an image first!");
+          return;
+        }
+
+        try {
+          downloadBtn.textContent = "Generating...";
+          downloadBtn.disabled = true;
+
+          const templateBackground = downloadTemplate.querySelector(
+            "#templateBackground"
+          );
+          const templateBottomImage = downloadTemplate.querySelector(
+            "#templateBottomImage"
+          );
+          const templateImage =
+            downloadTemplate.querySelector("#templateImage");
+          const templateName = downloadTemplate.querySelector("#templateName");
+
+          await Promise.all([
+            new Promise((resolve, reject) => {
+              templateBackground.onload = resolve;
+              templateBackground.onerror = reject;
+              templateBackground.src = backgroundImage.src;
+            }),
+            new Promise((resolve, reject) => {
+              templateBottomImage.onload = resolve;
+              templateBottomImage.onerror = reject;
+              templateBottomImage.src = bottomImage.src;
+            }),
+          ]);
+
+          templateImage.src = uploadedImage.src;
+          await new Promise((resolve) => {
+            if (templateImage.complete) resolve();
+            else templateImage.onload = resolve;
+          });
+
+          templateName.textContent = nameInput.value;
+
+          const canvas = await html2canvas(downloadTemplate.firstElementChild, {
+            allowTaint: true,
+            useCORS: true,
+            scale: 2,
+            backgroundColor: null,
+            logging: false,
+          });
+
+          const link = document.createElement("a");
+          link.download = "islamic-bookfair-25.jpg";
+          link.href = canvas.toDataURL("image/jpeg", 1.0);
+          link.click();
+        } catch (error) {
+          console.error("Download error:", error);
+          alert("There was an error generating your frame. Please try again.");
+        } finally {
+          downloadBtn.textContent = "ডাউনলোড করুন";
+          downloadBtn.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
