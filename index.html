@@ -318,22 +318,16 @@
           const bottomH =
             (bottomImg.naturalHeight / bottomImg.naturalWidth) * bottomW;
           ctx.drawImage(bottomImg, 375 * DPR, 600 * DPR, bottomW, bottomH);
-
-          // Draw name text (same position/size as templateName)
+          // Draw name text (centered vertically inside template box)
           const name = nameInput.value || "";
-          const fontSize = 50 * DPR; // template used 50px => scale for DPR
-          // Wait for custom font to be available (if using @font-face)
-          try {
-            await document.fonts.load(`${fontSize}px "MyCustomFont"`);
-          } catch (err) {
-            // if font loading fails, fallback will be used
-          }
+          const fontSize = 50 * DPR; // template used 50px
           ctx.fillStyle = "#fff6ee";
           ctx.textAlign = "center";
-          ctx.textBaseline = "top";
+          ctx.textBaseline = "middle"; // change from 'top' to 'middle'
           ctx.font = `${fontSize}px "MyCustomFont", sans-serif`;
-          const textX = (300 + 400 / 2) * DPR; // left:300, width:400
-          ctx.fillText(name, textX, 660 * DPR);
+          const textX = (300 + 400 / 2) * DPR; // horizontal center of template box
+          const textY = (700 + 50 / 2) * DPR; // vertical center of template box
+          ctx.fillText(name, textX, textY);
 
           // Export and download
           const link = document.createElement("a");
